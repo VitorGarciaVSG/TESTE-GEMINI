@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Adiciona o Babel Standalone para transpilar TSX no navegador -->
     <script src="https://unpkg.com/@babel/standalone@7.24.8/babel.min.js"></script>
-    <!-- O importmap diz ao navegador onde encontrar o React -->
+    <!-- O importmap corrigido garante que apenas uma versão do React seja carregada -->
     <script type="importmap">
 {
   "imports": {
@@ -20,17 +20,20 @@
 </script>
   </head>
   <body>
-    <noscript>Você precisa habilitar o JavaScript para rodar este aplicativo.</noscript>
+    <noscript
+      >Você precisa habilitar o JavaScript para rodar este
+      aplicativo.</noscript
+    >
     <div id="root"></div>
     <!-- 
       Todo o código React/TypeScript agora está em um único lugar.
-      Isso evita problemas de importação de módulos em ambientes sem um passo de "build".
+      Isso evita problemas de importação de módulos e garante que funcione em qualquer hospedagem.
     -->
     <script type="text/babel" data-type="module">
       import React from 'react';
       import ReactDOM from 'react-dom/client';
 
-      // Componente principal da aplicação (antes em App.tsx)
+      // --- Componente principal da aplicação (antes em App.tsx) ---
       const App = () => {
         return (
           <main className="flex items-center justify-center h-screen bg-gradient-to-br from-gray-900 to-slate-800 text-white font-sans">
@@ -51,7 +54,7 @@
         );
       };
 
-      // Lógica de renderização (antes em index.tsx)
+      // --- Lógica de renderização (antes em index.tsx) ---
       const rootElement = document.getElementById('root');
       if (!rootElement) {
         throw new Error("Elemento 'root' não encontrado no DOM.");
