@@ -1,5 +1,7 @@
 {
-  "name": "Página de Teste para Git",
-  "description": "Uma aplicação web React simples e esteticamente agradável, criada para fins de teste de implantação com Git. Exibe uma mensagem de boas-vindas centralizada.",
-  "requestFramePermissions": []
+  "name": "Checklist Kit Topografia",
+  "description": "Uma aplicação web em React para realizar o checklist de equipamentos de topografia, com upload de fotos, assinatura digital e geração de relatório em PDF.",
+  "requestFramePermissions": [
+    "camera"
+  ]
 }
