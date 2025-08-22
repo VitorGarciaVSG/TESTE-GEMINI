@@ -7,12 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Adiciona o Babel Standalone para transpilar TSX no navegador -->
     <script src="https://unpkg.com/@babel/standalone@7.24.8/babel.min.js"></script>
+    <!-- O importmap diz ao navegador onde encontrar o React -->
     <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.1.1",
-    "react-dom/client": "https://esm.sh/react-dom@^19.1.1/client",
-    "react/jsx-runtime": "https://esm.sh/react@^19.1.1/jsx-runtime",
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
     "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
     "react/": "https://esm.sh/react@^19.1.1/"
   }
@@ -22,7 +22,47 @@
   <body>
     <noscript>Você precisa habilitar o JavaScript para rodar este aplicativo.</noscript>
     <div id="root"></div>
-    <!-- O tipo do script mudou para "text/babel" para que o Babel possa processá-lo -->
-    <script type="text/babel" data-type="module" src="/index.tsx"></script>
+    <!-- 
+      Todo o código React/TypeScript agora está em um único lugar.
+      Isso evita problemas de importação de módulos em ambientes sem um passo de "build".
+    -->
+    <script type="text/babel" data-type="module">
+      import React from 'react';
+      import ReactDOM from 'react-dom/client';
+
+      // Componente principal da aplicação (antes em App.tsx)
+      const App = () => {
+        return (
+          <main className="flex items-center justify-center h-screen bg-gradient-to-br from-gray-900 to-slate-800 text-white font-sans">
+            <div className="text-center p-8 md:p-12 bg-gray-800 bg-opacity-50 rounded-2xl shadow-2xl border border-gray-700 backdrop-blur-sm transform hover:scale-105 transition-transform duration-300 ease-in-out">
+              <h1 className="text-4xl md:text-6xl font-extrabold mb-4">
+                <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 bg-clip-text text-transparent">
+                  Olá, Mundo!
+                </span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-300">
+                Este é um site de teste para o Git.
+              </p>
+              <div className="mt-6 text-sm text-gray-500">
+                <p>Aplicação React + TypeScript + Tailwind CSS</p>
+              </div>
+            </div>
+          </main>
+        );
+      };
+
+      // Lógica de renderização (antes em index.tsx)
+      const rootElement = document.getElementById('root');
+      if (!rootElement) {
+        throw new Error("Elemento 'root' não encontrado no DOM.");
+      }
+
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
+    </script>
   </body>
 </html>
