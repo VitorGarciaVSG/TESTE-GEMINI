@@ -1,0 +1,5 @@
+{
+  "name": "Página de Teste para Git",
+  "description": "Uma aplicação web React simples e esteticamente agradável, criada para fins de teste de implantação com Git. Exibe uma mensagem de boas-vindas centralizada.",
+  "requestFramePermissions": []
+}
